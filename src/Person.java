@@ -46,15 +46,14 @@ public class Person {
                 '}';
     }
 
-    public String strong(Collection<Person> persons){
-        for (Person m : persons ){
-            if (m.getSex()== Sex.MAN && m.getAge() < 65){
-                return m.getFamily();
-            } else if (m.getSex()== Sex.WOMAN && m.getAge() < 60) {
-                return m.getFamily();
-            }
+    public static boolean strong(Person person) {
+
+        if (person.getSex() == Sex.MAN && person.getAge() < 65) {
+            return true;
+        } else if (person.getSex() == Sex.WOMAN && person.getAge() < 60) {
+            return true;
         }
-        return null;
+        return false;
     }
 
 }

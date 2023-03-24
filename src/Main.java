@@ -1,6 +1,5 @@
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,24 +15,27 @@ public class Main {
                     Education.values()[new Random().nextInt(Education.values().length)])
             );
         }
-        Stream<Person> a = persons.stream();
-        persons.stream().filter(personAge -> personAge.getAge() < 18);
-        persons.stream().count();
+        long a = persons.stream()
+                .filter(personAge -> personAge.getAge() < 18)
+                .count();
         System.out.println(a);
 
-        Stream<Person> b = persons.stream();
-        persons.stream().filter(personAge -> personAge.getAge() > 18 && personAge.getAge() < 27);
-        persons.stream().filter(personSex -> personSex.getSex().equals(Sex.MAN));
-        persons.stream().map(Person -> String.valueOf(Person));
-        persons.stream().collect(Collectors.toList());
+        List<String> b = persons.stream()
+                .filter(personAge -> personAge.getAge() > 18 && personAge.getAge() < 27)
+                .filter(personSex -> personSex.getSex().equals(Sex.MAN))
+                .map(Person -> String.valueOf(Person))
+                .collect(Collectors.toList());
         System.out.println(b);
 
-        Stream<Person> c = persons.stream();
-        persons.stream().filter(personEducation -> personEducation.getEducation().equals(Education.HIGHER));
-        persons.stream().filter(personAge -> personAge.getAge() > 18);
-        persons.stream().filter(personEducation -> personEducation.getEducation().equals(Education.HIGHER));
-        persons.stream().filter(Person::strong);
-        persons.stream().sorted(Comparator.comparing(Person::getFamily));
-        persons.stream().collect(Collectors.toList());
+
+        List<Person> c = persons.stream()
+                .filter(personEducation -> personEducation.getEducation().equals(Education.HIGHER))
+                .filter(personAge -> personAge.getAge() > 18)
+                .filter(personEducation -> personEducation.getEducation().equals(Education.HIGHER))
+                .filter(Person :: strong )
+                .sorted(Comparator.comparing(Person::getFamily))
+                .collect(Collectors.toList());
+        System.out.println(c);
     }
+
 }
